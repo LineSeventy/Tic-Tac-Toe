@@ -1,12 +1,13 @@
 "use strict";
 
 class PlayerSystem {
-    constructor(playerName, playerScore = 0, rounds = 0, wins = 0) {
+    constructor(playerName, playerScore = 0, rounds = 0, wins = 0, nickname) {
         this.playerName = playerName;
         this.playerScore = playerScore;
         this.rounds = rounds;
         this.wins = wins;
         this.turn = 0; 
+        this.nickname = nickname;
     }
 
     turnPlus() {
@@ -43,6 +44,8 @@ const modelStart = document.querySelector("#startPopUp");
 const closeModalStart = document.querySelector(".submitBtn");
 const playerName1 = document.querySelector("#playerX");
 const playerName2 = document.querySelector("#playerO");
+player1.nickname = playerName1.value;
+player2.nickname = playerName2.value;
 const displayName1 = document.querySelector(".displayName1");
 const displayName2 = document.querySelector(".displayName2");
 closeModalStart.addEventListener("click", () => {
@@ -55,7 +58,21 @@ closeModalStart.addEventListener("click", () => {
     modelStart.style.display = "none"
 }
 })
-
+let winnerModal = document.querySelector(".popUpEnd");
+let winnerModalContent = document.querySelector(".contentWinner");
+let winnerCloseBtn = document.querySelector(".winnerCloseBtn");
+let winnerName = document.querySelector(".replace")
+let winnerModalSys = () =>{
+    if (currentPlayer.checkWin(gameBoard)){
+        winnerModal.style.display = "block";
+        winnerName.textContent = `You Win!   ${currentPlayer.nickname}`
+        winnerModalContent.appendChild(winnerName);
+    }
+     winnerCloseBtn.addEventListener('click', () => {
+        winnerModal.style.display = "none"
+        winnerName.textContent = ""
+    })
+}
 
 let gameStart = () => {
     buttons.forEach((button, index) => {
@@ -64,7 +81,7 @@ let gameStart = () => {
                 gameBoard[index] = currentPlayer.playerName; 
                 button.textContent = currentPlayer.playerName; 
                 if (currentPlayer.checkWin(gameBoard)) { 
-                    alert(`${currentPlayer.playerName} wins!`);
+                    winnerModalSys();
                     resetGame(); 
                 } else {
                     playerTurnSystem(); 
