@@ -1,3 +1,5 @@
+"use strict";
+
 class PlayerSystem {
     constructor(playerName, playerScore = 0, rounds = 0, wins = 0) {
         this.playerName = playerName;
@@ -34,13 +36,28 @@ class PlayerSystem {
 
 let player1 = new PlayerSystem("X");
 let player2 = new PlayerSystem("O");
+let gameBoard = ["#", "#", "#", "#", "#", "#", "#", "#", "#"];
+let currentPlayer = player1; 
+const buttons = document.querySelectorAll('.buttonContainer button');
+const modelStart = document.querySelector("#startPopUp");
+const closeModalStart = document.querySelector(".submitBtn");
+const playerName1 = document.querySelector("#playerX");
+const playerName2 = document.querySelector("#playerO");
+const displayName1 = document.querySelector(".displayName1");
+const displayName2 = document.querySelector(".displayName2");
+closeModalStart.addEventListener("click", () => {
+    if(!playerName1.value || !playerName2.value){
+        alert("Add Names");
+        Event.stopPropagation();
+    }else{
+    displayName1.textContent = `${playerName1.value}`;
+    displayName2.textContent = `${playerName2.value}`;
+    modelStart.style.display = "none"
+}
+})
+
 
 let gameStart = () => {
-    let gameBoard = ["#", "#", "#", "#", "#", "#", "#", "#", "#"];
-    let currentPlayer = player1; 
-
-    const buttons = document.querySelectorAll('.buttonContainer button');
-
     buttons.forEach((button, index) => {
         button.addEventListener('click', () => {
             if (gameBoard[index] === '#') {
@@ -56,22 +73,20 @@ let gameStart = () => {
             }
         });
     });
+};
 
+const playerTurnSystem = () => {
+    currentPlayer.turnPlus(); 
+}
 
-    const playerTurnSystem = () => {
-        currentPlayer.turnPlus(); 
-    }
-
-    // Function to reset the game
-    function resetGame() {
-        gameBoard = ["#", "#", "#", "#", "#", "#", "#", "#", "#"];
-        buttons.forEach(button => {
-            button.textContent = '#'; 
-        });
-        player1.turn = 0; 
-        player2.turn = 0;
-        currentPlayer = player1; 
-    }
+let resetGame = () => {
+    gameBoard = ["#", "#", "#", "#", "#", "#", "#", "#", "#"];
+    buttons.forEach(button => {
+        button.textContent = '#'; 
+    });
+    player1.turn = 0; 
+    player2.turn = 0;
+    currentPlayer = player1; 
 }
 
 gameStart();

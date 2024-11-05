@@ -8,17 +8,42 @@
     <link rel="stylesheet" href="./CSS/style.css">
 </head>
 <body>
+    <header>
+        <h1 class="displayName1">Player1</h1>
+        <h1 class="displayName2">Player2</h1>
+    </header>
     <div class="container">
+        <div id="startPopUp" class="popUpStart"> 
+            <div class="content">   
+        <form>
+            <label for="playerX">PlayerX Name: </label>
+            <input type="text" name="" id="playerX" placeholder="Enter Your Name" required>
+            <br>
+            <label for="playerO">PlayerO Name: </label>
+            <input type="text" name="" id="playerO" placeholder="Enter Your Name" required>
+        </form>
+        <button class="submitBtn">Submit</button>    
+    </div> 
+        </div>
+        
+        <button class="reset" onclick="resetGame()"> Restart</button>
+
+
+        <div id="winnerPopUp" class="popUpEnd">
+            <div class="content">
+                <button>Close</button>
+            </div>
+        </div>
         <div class="buttonContainer">
-        <button id="0">#</button>
-        <button id="1">#</button>
-        <button id="2">#</button>
-        <button id="3">#</button>
-        <button id="4">#</button>
-        <button id="5">#</button>
-        <button id="6">#</button>
-        <button id="7">#</button>
-        <button id="8">#</button></div>
+            <button id="0">#</button>
+            <button id="1">#</button>
+            <button id="2">#</button>
+            <button id="3">#</button>
+            <button id="4">#</button>
+            <button id="5">#</button>
+            <button id="6">#</button>
+            <button id="7">#</button>
+            <button id="8">#</button></div>
     </div>
 </body>
 </html>
