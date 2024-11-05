@@ -59,6 +59,8 @@ width: 100vw;
 .popUpStart .content {
     position: relative;
     background-color: #fff;
+    display: flex;
+    justify-content: center;
     margin: 10% auto;
     margin-top: 20%;
     padding: 10rem;
@@ -120,4 +122,16 @@ width: 100vw;
    color: black;
     font-size: x-large;
     border: none;
+}
+
+.submitBtn{
+    position: absolute;
+    top: 80%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    padding: 10px 20px; 
+    background-color: black; 
+    color: white; 
+    border: none;
+    border-radius: 5px; 
 }

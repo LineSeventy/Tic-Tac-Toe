@@ -44,24 +44,33 @@ const modelStart = document.querySelector("#startPopUp");
 const closeModalStart = document.querySelector(".submitBtn");
 const playerName1 = document.querySelector("#playerX");
 const playerName2 = document.querySelector("#playerO");
-player1.nickname = playerName1.value;
-player2.nickname = playerName2.value;
 const displayName1 = document.querySelector(".displayName1");
 const displayName2 = document.querySelector(".displayName2");
+
+
+
 closeModalStart.addEventListener("click", () => {
     if(!playerName1.value || !playerName2.value){
         alert("Add Names");
-        Event.stopPropagation();
-    }else{
+        return;
+    }
+    player1.nickname = playerName1.value;
+    player2.nickname = playerName2.value;
+    
     displayName1.textContent = `${playerName1.value}`;
     displayName2.textContent = `${playerName2.value}`;
     modelStart.style.display = "none"
-}
+    gameStart();
+
 })
+
+
 let winnerModal = document.querySelector(".popUpEnd");
 let winnerModalContent = document.querySelector(".contentWinner");
 let winnerCloseBtn = document.querySelector(".winnerCloseBtn");
 let winnerName = document.querySelector(".replace")
+
+
 let winnerModalSys = () =>{
     if (currentPlayer.checkWin(gameBoard)){
         winnerModal.style.display = "block";
